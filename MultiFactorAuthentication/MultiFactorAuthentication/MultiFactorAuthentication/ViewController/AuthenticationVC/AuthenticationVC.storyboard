@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Auth View Controller-->
+        <scene sceneID="91U-xv-6j4">
+            <objects>
+                <viewController storyboardIdentifier="AuthViewController" id="Yjd-El-m9B" customClass="AuthViewController" customModule="MultiFactorAuthentication" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FR5-ei-cze">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saM-9M-JDd">
+                                <rect key="frame" x="30" y="548" width="354" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CdW-cT-9mm"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Touch ID">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="touchfaceID:" destination="Yjd-El-m9B" eventType="touchUpInside" id="IVl-1C-Df2"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Touch_ID" translatesAutoresizingMaskIntoConstraints="NO" id="8uM-gC-nwo">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="e7I-fN-Jtk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="hhr-oB-OWU"/>
+                                    <constraint firstAttribute="width" constant="100" id="k6I-19-pBX"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="woR-ip-fYW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m6l-b6-Ak2"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8uM-gC-nwo" firstAttribute="centerY" secondItem="FR5-ei-cze" secondAttribute="centerY" id="73e-G8-Yln"/>
+                            <constraint firstItem="m6l-b6-Ak2" firstAttribute="trailing" secondItem="saM-9M-JDd" secondAttribute="trailing" constant="30" id="DxA-9l-pzf"/>
+                            <constraint firstItem="saM-9M-JDd" firstAttribute="top" secondItem="8uM-gC-nwo" secondAttribute="bottom" constant="50" id="EDB-rL-Ly8"/>
+                            <constraint firstItem="saM-9M-JDd" firstAttribute="leading" secondItem="m6l-b6-Ak2" secondAttribute="leading" constant="30" id="jyf-mw-1LH"/>
+                            <constraint firstItem="8uM-gC-nwo" firstAttribute="centerX" secondItem="FR5-ei-cze" secondAttribute="centerX" id="xgq-EA-U2M"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="saM-9M-JDd" id="jrK-g5-SME"/>
+                        <outlet property="image" destination="8uM-gC-nwo" id="9Dx-dy-5lg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vcd-c0-3tD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-130" y="70"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Touch_ID" width="512" height="512"/>
+    </resources>
+</document>

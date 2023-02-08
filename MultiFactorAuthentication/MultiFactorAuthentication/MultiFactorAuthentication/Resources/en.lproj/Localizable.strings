@@ -1,0 +1,39 @@
+//
+//  File.swift
+//  
+//
+//  Created by sridharan R on 04/07/22.
+//
+
+"oops" = "oops!";
+"enrolFirst" = "sorry we cant able to access, please enroll first!";
+"Authentication success" = "Authentication success!";
+"Failed To Authentication" = "Failed To Authentication!";
+"success"  = "success!";
+"Failed"= "Failed!";
+"Camera" = "Camera";
+
+// Api call
+"Something went wrong" = "Something went wrong!";
+"Time out error" = "Time out error!";
+
+//corelocation
+"Permission denied" = "Permission denied!";
+"Need location permission to fetch location" = "Need location permission to fetch location!";
+
+
+//otp vc
+"Otp successfully verified" = "Otp successfully verified!";
+"Otp failed to verify" = "Otp failed to verify!";
+"Provide the verification pin you received" = "Provide the verification pin you received";
+"Submit" = "Submit";
+"Cancel" = "Cancel";
+
+//common
+"Invalied Url" = "Invalied Url";
+"OK" = "OK";
+"Yes" = "Yes";
+"No" = "No";
+"Latitude" = "Latitude";
+"Longitude" = "Longitude";
+"Alert" = "Alert";

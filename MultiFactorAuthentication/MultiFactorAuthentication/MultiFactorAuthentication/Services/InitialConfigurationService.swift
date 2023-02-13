@@ -71,7 +71,7 @@ public class InitialConfiguration {
         InitialConfiguration.sharedInstance.fcmToken = token
         let userId = InitialConfiguration.sharedInstance.userId
         if userId.isEmpty {
-            completionHandler(nil, AMDError(code: 500, message: NSLocalizedString("Something went wrong", bundle: .main, comment: "")))
+            completionHandler(nil, AMDError(code: 500, message: NSLocalizedString("Something went wrong", bundle: bundle, comment: "")))
             return
         }
         let parameterDictionary = AMDUserDetails(applicationUUID: configData.applicationUUID, deviceUUID: deviceUdid, userId: userId, token: token)
@@ -121,6 +121,17 @@ public class InitialConfiguration {
         }
     }
     
+    func sendRandomNumberVerification(_ number: RandomNumber,_ completionHandler:@escaping(Data?, AMDError?)->()) {
+        let url = ApiUrls.shared.SEND_ACTION_CHOISE
+        ApiHelper.shared.requestJson(url, .post, parameter: ApiHelper.encodeToData(data: number)){ success , error in
+            if success != nil {
+                completionHandler(success, nil)
+            }else {
+                completionHandler(nil, error)
+            }
+        }
+    }
+    
     func sendPayload(_ userInfo: [AnyHashable : Any]) {
         let url = ApiUrls.shared.SEND_ACTION_CHOISE
         if let parameter = try? JSONSerialization.data(withJSONObject: userInfo) {
@@ -133,7 +144,6 @@ public class InitialConfiguration {
             }
         }
     }
-    
     
     /// To get Routee auth token
     ///

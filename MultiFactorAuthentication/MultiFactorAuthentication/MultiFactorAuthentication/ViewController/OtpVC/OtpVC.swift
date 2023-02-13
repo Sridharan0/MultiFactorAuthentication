@@ -47,9 +47,9 @@ class OtpViewController : UIViewController {
             otpField.otpSize = otp.count
             otpField.setOtp(otp)
         }
-        infoLabel?.text = NSLocalizedString("Provide the verification pin you received", bundle: .main, comment: "")
-        submitBtn.setTitle(NSLocalizedString("Submit", bundle: .main, comment: ""), for: .normal)
-        cancelBtn?.setTitle(NSLocalizedString("Cancel", bundle: .main, comment: ""), for: .normal)
+        infoLabel?.text = NSLocalizedString("Provide the verification pin you received", bundle: bundle, comment: "")
+        submitBtn.setTitle(NSLocalizedString("Submit", bundle: bundle, comment: ""), for: .normal)
+        cancelBtn?.setTitle(NSLocalizedString("Cancel", bundle: bundle, comment: ""), for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

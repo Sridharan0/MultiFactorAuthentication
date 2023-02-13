@@ -187,7 +187,7 @@ class CoreLocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func showPermissionDeniedAlert(_ vc : UIViewController) {
-        vc.showQuestionAlert(withTitle: NSLocalizedString("Permission denied", bundle: Bundle.main, comment: "Permission denied by user"), message: NSLocalizedString("Need location permission to fetch location. Please click Yes to allow permission.", bundle: Bundle.main, comment: "Location permission description"), handler: { _ in
+        vc.showQuestionAlert(withTitle: NSLocalizedString("Permission denied", bundle: bundle, comment: "Permission denied by user"), message: NSLocalizedString("Need location permission to fetch location. Please click Yes to allow permission.", bundle: bundle, comment: "Location permission description"), handler: { _ in
             UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
         }, { _ in
             if let completion = self.completion {

@@ -19,11 +19,10 @@ public class CoreDataManager {
 
     lazy var persistentContainer: NSPersistentContainer = {
        
-        let resourcePath = Bundle.main.path(forResource: "resource", ofType: "bundle")
-           let bundlee = Bundle(path: resourcePath!)
+      
         
-        let modelURL = bundlee?.url(forResource: self.model, withExtension: ".momd")
-        let model = NSManagedObjectModel(contentsOf: modelURL!)!
+        let modelURL = bundle.url(forResource: self.model, withExtension: ".momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
         let container = NSPersistentCloudKitContainer(name: self.model, managedObjectModel: model)
         container.loadPersistentStores { (storeDescription, error) in
             if let err = error{

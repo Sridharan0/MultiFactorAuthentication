@@ -11,6 +11,7 @@ import SwiftUI
 public struct UserInfoAPNS : Codable, Equatable {
     var aps : APS?
     var actionToken: String?
+    var verificationNumbers: String?
     var headers:Headers?
         
     enum APNsType : String, CaseIterable {
@@ -20,6 +21,7 @@ public struct UserInfoAPNS : Codable, Equatable {
         case Location = "LOCATION"
         case VideoConference = "VIDEOCONFERENCE"
         case StatusUpdate = "STATUSUPDATE"
+        case RandomNumber = "RANDOMNUMBER"
         case NONE = ""
     }
     
@@ -39,6 +41,18 @@ public struct UserInfoAPNS : Codable, Equatable {
             }
         }
         return false
+    }
+    
+    mutating func changeUserInfoApns(userInfo: [AnyHashable : Any]) {
+        var userInfoApns = self
+        if let type = userInfo["type"] as? String { //Silent status update
+            self.aps?.status = userInfo["status"] as? String
+            self.aps?.category = userInfo["category"] as? String
+            var authType = AuthType()
+            authType.type = type
+            self.aps?.authTypes = []
+            self.aps?.authTypes?.append(authType)
+        }
     }
 }
 

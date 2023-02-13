@@ -22,10 +22,10 @@ class QuestionaryVC: UIViewController {
         submitBtn.layer.cornerRadius = submitBtn.frame.size.height / 2
         cancelBtn.layer.cornerRadius = submitBtn.frame.size.height / 2
         notificationView.layer.cornerRadius = 25
-        titleLabel?.text = NSLocalizedString(userInfoApns?.aps?.alert?.title ?? "title", bundle: .main, comment: "")
-        infoLabel?.text = NSLocalizedString(userInfoApns?.aps?.alert?.body ?? "Provide the verification pin you received", bundle: .main, comment: "")
-        submitBtn.setTitle(NSLocalizedString("Accept", bundle: .main, comment: ""), for: .normal)
-        cancelBtn.setTitle(NSLocalizedString("Deny", bundle: .main, comment: ""), for: .normal)
+        titleLabel?.text = NSLocalizedString(userInfoApns?.aps?.alert?.title ?? "title", bundle: bundle, comment: "")
+        infoLabel?.text = NSLocalizedString(userInfoApns?.aps?.alert?.body ?? "Provide the verification pin you received", bundle: bundle, comment: "")
+        submitBtn.setTitle(NSLocalizedString("Accept", bundle: bundle, comment: ""), for: .normal)
+        cancelBtn.setTitle(NSLocalizedString("Deny", bundle: bundle, comment: ""), for: .normal)
     }
     
     //MARK: IBActions

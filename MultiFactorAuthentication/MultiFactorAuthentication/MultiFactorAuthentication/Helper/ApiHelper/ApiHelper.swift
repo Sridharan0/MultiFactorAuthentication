@@ -52,7 +52,7 @@ class ApiHelper : NSObject {
                     self.requestJson(url, method, parameter: parameter, timeInterval: timeInterval, retryCount: retryCount, currentRetryCount: currentRetryCount, completionHandler, isShowLoader: isShowLoader)
                 }, isShowCancel: true)
             }else {
-                completionHandler(nil, AMDError(code: 0, message: NSLocalizedString("Invalied Url", bundle: Bundle.main, comment: "Invalied Url")))
+                completionHandler(nil, AMDError(code: 0, message: NSLocalizedString("Invalied Url", bundle:bundle, comment: "Invalied Url")))
 //                completionHandler(nil, AMDError(code: 501, message: NSLocalizedString("No Network available", bundle: Bundle.module, comment: "No Network"))))
             }
             return
@@ -65,7 +65,7 @@ class ApiHelper : NSObject {
         let currentRetryCount = currentRetryCount ?? DefaultRetryCount
         
         guard let Url = URL(string: url) else {
-            completionHandler(nil, AMDError(code: 0, message: NSLocalizedString("Invalied Url", bundle: Bundle.main, comment: "Invalied Url")))
+            completionHandler(nil, AMDError(code: 0, message: NSLocalizedString("Invalied Url", bundle: bundle, comment: "Invalied Url")))
             return
         }
         var request = URLRequest(url: Url)
@@ -99,23 +99,23 @@ class ApiHelper : NSObject {
                     if let error = error as? URLError {
                         switch(error.code){
                         case .timedOut:
-                            completionHandler(nil, AMDError(code: error.errorCode, message: NSLocalizedString("Time out error", bundle: .main, comment: "")))
+                            completionHandler(nil, AMDError(code: error.errorCode, message: NSLocalizedString("Time out error", bundle: bundle, comment: "")))
                             break
                         default:
-                            completionHandler(nil, AMDError(code: error.errorCode, message: NSLocalizedString("Something went wrong", bundle: .main, comment: "")))
+                            completionHandler(nil, AMDError(code: error.errorCode, message: NSLocalizedString("Something went wrong", bundle: bundle, comment: "")))
                         }
                     }else{
-                        completionHandler(nil,  AMDError(code: 500, message: NSLocalizedString("Something went wrong", bundle: .main, comment: "")))
+                        completionHandler(nil,  AMDError(code: 500, message: NSLocalizedString("Something went wrong", bundle: bundle, comment: "")))
                     }
                 }
             }else if let data = data {
                 data.printResponse()
                 if let error = ErrorMessage.decode(data) {
-                    completionHandler(nil, AMDError(code: error.code.toInt(), message: NSLocalizedString(error.developerMessage ?? "Something went wrong", bundle: .main, comment: ""), data))
+                    completionHandler(nil, AMDError(code: error.code.toInt(), message: NSLocalizedString(error.developerMessage ?? "Something went wrong", bundle: bundle, comment: ""), data))
                 }else if let error = RouteeErrorMessage.decode(data) {
-                    completionHandler(nil, AMDError(code: RouteeAuthErrorCode, message: NSLocalizedString(error.error.replacingOccurrences(of: "_", with: " ") , bundle: .main, comment: ""), data))
+                    completionHandler(nil, AMDError(code: RouteeAuthErrorCode, message: NSLocalizedString(error.error.replacingOccurrences(of: "_", with: " ") , bundle: bundle, comment: ""), data))
                 }else if data.isEmpty && !isacceptEmptyResponse {
-                    completionHandler(nil,  AMDError(code: 500, message: NSLocalizedString("Something went wrong", bundle: .main, comment: "")))
+                    completionHandler(nil,  AMDError(code: 500, message: NSLocalizedString("Something went wrong", bundle: bundle, comment: "")))
                 }else {
                     DispatchQueue.main.async {
                         completionHandler(data, nil)

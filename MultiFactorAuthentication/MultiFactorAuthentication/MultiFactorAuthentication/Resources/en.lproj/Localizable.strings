@@ -29,6 +29,10 @@
 "Submit" = "Submit";
 "Cancel" = "Cancel";
 
+//random number vc
+"Verify this is you!" = "Verify this is you!";
+"Please choose the number sent to you" = "Please choose the number sent to you";
+
 //common
 "Invalied Url" = "Invalied Url";
 "OK" = "OK";

@@ -17,7 +17,7 @@ public class NavigationHelper {
     /// Opens Accept / Deny screen
     /// - Parameter userInfoApns: UserInfoAPNS response from APNS
     func openQuestionaryScreen(_ userInfoApns : UserInfoAPNS?){
-        if let controller = UIStoryboard(name: "QuestionaryVC", bundle: Bundle.main).instantiateViewController(withIdentifier: "QuestionaryVC") as? QuestionaryVC {
+        if let controller = UIStoryboard(name: "QuestionaryVC", bundle: bundle).instantiateViewController(withIdentifier: "QuestionaryVC") as? QuestionaryVC {
             controller.userInfoApns = userInfoApns
             if #available(iOS 13.0, *) {
                 controller.isModalInPresentation = true
@@ -36,7 +36,7 @@ public class NavigationHelper {
     ///   - otpSize: size of OTP default is 4 `optional`
     public func openOTPScreen(_ viewController: UIViewController? = nil, otpStatusDelegate :@escaping(String?, String?) -> (), _ otpSize : Int = DefaultOtpSize, otp : String = "") {
         DispatchQueue.main.async {
-            guard let nextViewController = UIStoryboard(name: "otpVC", bundle: Bundle.main).instantiateViewController(withIdentifier: "OtpViewController") as? OtpViewController else { return        }
+            guard let nextViewController = UIStoryboard(name: "otpVC", bundle: bundle).instantiateViewController(withIdentifier: "OtpViewController") as? OtpViewController else { return        }
             nextViewController.otpStatusDelegate = otpStatusDelegate
             nextViewController.otpSize = otpSize
             nextViewController.otp = otp
@@ -56,7 +56,7 @@ public class NavigationHelper {
         let authcontext:LAContext = LAContext()
         var error : NSError?
         if authcontext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: &error){
-            authcontext.evaluatePolicy(LAPolicy.deviceOwnerAuthentication, localizedReason: message ?? NSLocalizedString("Need biometric for authentication", bundle: .main, comment: ""), reply: { (sucess,error) in
+            authcontext.evaluatePolicy(LAPolicy.deviceOwnerAuthentication, localizedReason: message ?? NSLocalizedString("Need biometric for authentication", bundle: bundle , comment: ""), reply: { (sucess,error) in
                 if sucess{
                     completionHandler(true)
                 }else{
@@ -79,7 +79,7 @@ public class NavigationHelper {
     ///       }
     func openVideoCallScreen(roomLink: String, userInforApns: UserInfoAPNS?, completionHandler:@escaping (Bool) -> ()){
         DispatchQueue.main.async {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "VideoCallVC", bundle:Bundle.main)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "VideoCallVC", bundle:bundle)
             let videoCallVC = storyBoard.instantiateViewController(withIdentifier: "VideoCallVC") as! VideoCallVC
             videoCallVC.modalPresentationStyle = .fullScreen
             videoCallVC.roomLink = roomLink
@@ -99,7 +99,7 @@ public class NavigationHelper {
     ///   - viewController: self` contains current view controller
     ///   - completionHandler : success will contain the bool which  we assign the completionHandler here
     public func openAuthenticationScreen(_ viewController: UIViewController? = nil, completionHandler: @escaping (Bool)->Void) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "AuthenticationVC", bundle:Bundle.main)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "AuthenticationVC", bundle:bundle)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
         nextViewController.completion = completionHandler
         nextViewController.modalPresentationStyle = .fullScreen
@@ -125,11 +125,21 @@ public class NavigationHelper {
         NavigationHelper.shared.isMfaScreenActive = false
         DispatchQueue.main.async {
             
-            guard let nextViewController = UIStoryboard(name: "ConfirmationPopupVC", bundle: Bundle.main).instantiateViewController(withIdentifier: "ConfirmationPopupVC") as? ConfirmationPopupVC else { return }
+            guard let nextViewController = UIStoryboard(name: "ConfirmationPopupVC", bundle: bundle).instantiateViewController(withIdentifier: "ConfirmationPopupVC") as? ConfirmationPopupVC else { return }
             nextViewController.modalPresentationStyle = .pageSheet
             nextViewController.isSuccess = isSuccess
             nextViewController.message = message
             self.openScreen(currentVc: viewController, nextVc: nextViewController, forceShow: true)
+        }
+    }
+    
+    func openRandomNumberScreen(userInforApns: UserInfoAPNS?, completionHandler:@escaping (Bool) -> ()) {
+        DispatchQueue.main.async {
+            let nextViewController = UIStoryboard(name: "RandomNumberVC", bundle: bundle).instantiateViewController(withIdentifier: "RandomNumberVC") as! RandomNumberVC
+            nextViewController.userInfoApns = userInforApns
+            nextViewController.completionHandler = completionHandler
+            nextViewController.modalPresentationStyle = .fullScreen
+            self.openScreen(currentVc: nil, nextVc: nextViewController, forceShow: true)
         }
     }
     

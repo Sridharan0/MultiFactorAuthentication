@@ -10,16 +10,16 @@ import UIKit
 extension UIViewController {
     public func showOKAlert(withTitle title: String, message:String, handler: ( (UIAlertAction) -> ())? = nil){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.main, comment: "Ok"), style: .default, handler: handler))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: bundle, comment: "Ok"), style: .default, handler: handler))
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
     }
     
     public func showQuestionAlert(withTitle title:String?, message : String, handler: @escaping (UIAlertAction) -> Void,_ noHandler: ((UIAlertAction) -> Void)? = nil){
-        let alert = UIAlertController(title: title ?? NSLocalizedString("Alert", bundle: Bundle.main, comment: "Alert"), message: message , preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", bundle: Bundle.main, comment: "Action"), style: .default, handler: handler))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("No", bundle: Bundle.main, comment: "Default action"), style: .default, handler: noHandler))
+        let alert = UIAlertController(title: title ?? NSLocalizedString("Alert", bundle: bundle, comment: "Alert"), message: message , preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", bundle: bundle, comment: "Action"), style: .default, handler: handler))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", bundle: bundle, comment: "Default action"), style: .default, handler: noHandler))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -71,7 +71,7 @@ extension UIViewController {
 
 extension String {
     public var localized: String {
-        return NSLocalizedString(self, bundle: Bundle.main, comment: "")
+        return NSLocalizedString(self, bundle: bundle, comment: "")
     }
     
     func fromBase64() -> String? {

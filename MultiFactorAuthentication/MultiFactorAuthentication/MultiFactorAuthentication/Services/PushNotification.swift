@@ -122,23 +122,17 @@ public class PushNotification{
         })
     }
     
+    
+    
     public func handleDidReciveNotification(userInfo : [AnyHashable : Any], _ completionHandler:@escaping (String?) -> ()){
         let jsonData = try? JSONSerialization.data(withJSONObject: userInfo)
         if var userInfoApns : UserInfoAPNS = ApiHelper.decodeData(jsonData){
             //Send payload to server
-            guard UIApplication.shared.applicationState != .active else { //not in forground
-                completionHandler(nil)
-                return
+            if UIApplication.shared.applicationState != .active { //not in forground
+//                completionHandler(nil)
+                InitialConfiguration.sharedInstance.sendPayload(userInfo)
             }
-            InitialConfiguration.sharedInstance.sendPayload(userInfo)
-            if let type = userInfo["type"] as? String { //Silent status update
-                userInfoApns.aps?.status = userInfo["status"] as? String
-                userInfoApns.aps?.category = userInfo["category"] as? String
-                var authType = AuthType()
-                authType.type = type
-                userInfoApns.aps?.authTypes = []
-                userInfoApns.aps?.authTypes?.append(authType)
-            }
+            userInfoApns.changeUserInfoApns(userInfo: userInfo)
             guard userInfoApns.checkAuthType(authTypes: [.StatusUpdate]) else {
                 let deleteId = userInfo["del-id"] as? String
                 completionHandler(deleteId)
@@ -171,7 +165,6 @@ public class PushNotification{
         }
         
         let userInfoApns : UserInfoAPNS? = userInfoApns ?? ApiHelper.decodeData(jsonData)
-        
         if let userInfoApns : UserInfoAPNS = userInfoApns {
             if let category = userInfoApns.aps?.category {
                 switch NotificationCategory(rawValue: category) {
@@ -267,6 +260,11 @@ public class PushNotification{
                             authSuccess = success
                             dispatchGroup.leave()
                         })
+                    case .RandomNumber:
+                        NavigationHelper.shared.openRandomNumberScreen(userInforApns: userInfoApns){ success in
+                            authSuccess = success
+                            dispatchGroup.leave()
+                        }
                     case .NONE:
                         dispatchGroup.leave()
                     default:
@@ -358,7 +356,7 @@ public class PushNotification{
     }
     
     //Local notification location test purpose
-    func scheduleNotification(data : Any) {
+    public func scheduleNotification(data : Any) {
         let content = UNMutableNotificationContent()
         var body = "Location service started!"
         if data is CLLocation {

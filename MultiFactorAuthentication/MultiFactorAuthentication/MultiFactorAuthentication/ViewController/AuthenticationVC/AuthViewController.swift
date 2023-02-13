@@ -17,7 +17,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.image.image = UIImage(named: "Touch_ID")
-        self.button.setTitle(NSLocalizedString("Need user touch id", bundle: .main, comment: ""), for: .normal)
+        self.button.setTitle(NSLocalizedString("Need user touch id", bundle:bundle, comment: ""), for: .normal)
         faceId()
     }
     
@@ -44,7 +44,7 @@ class AuthViewController: UIViewController {
                 }
             }
             else {
-                self.showOKAlert(withTitle: NSLocalizedString("oops", bundle: .main, comment: ""), message: NSLocalizedString("enrolFirst", bundle: .main, comment: "enroll message"), handler: {_ in
+                self.showOKAlert(withTitle: NSLocalizedString("oops", bundle: bundle, comment: ""), message: NSLocalizedString("enrolFirst", bundle: bundle, comment: "enroll message"), handler: {_ in
                     if let vc = self.navigationController{
                         vc.popViewController(animated: true)
                     }else{
@@ -65,7 +65,7 @@ class AuthViewController: UIViewController {
         self.button.isHidden = false
         if canAuthenticateByFaceID(){
             self.image.image = UIImage(named:"person")
-            self.button.setTitle(NSLocalizedString("Camera", bundle: .main, comment: ""), for: .normal)
+            self.button.setTitle(NSLocalizedString("Camera", bundle: bundle, comment: ""), for: .normal)
         }
     }
 }

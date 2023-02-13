@@ -23,3 +23,21 @@ let UserInfoApnsKey = "userInfoApns"
 let SUCCESS = "SUCCESS"
 
 public let isTesting = true  //Testing popups enable/disable
+
+
+public var  bundle :Bundle = {
+//    let  bundle = Bundle(identifier: "com.programs.MultiFactorAuthentication")
+//     return bundle
+    let myBundle = Bundle(for: CoreDataManager.self)
+
+    // Get the URL to the resource bundle within the bundle
+    // of the current class.
+//    guard let resourceBundleURL = myBundle.url(
+//        forResource: "MySDK", withExtension: "bundle")
+//        else { fatalError("MySDK.bundle not found!") }
+    
+    return myBundle
+    
+    
+ }()
+

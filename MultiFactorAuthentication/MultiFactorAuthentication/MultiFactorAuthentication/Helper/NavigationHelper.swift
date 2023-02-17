@@ -168,8 +168,15 @@ public class NavigationHelper {
                      topController.present(nextVc, animated: true, completion: nil)
                      }
                 } else {
-                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?
-                        .present(nextVc, animated:true, completion:nil)
+                    //                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?
+                    //                        .present(nextVc, animated:true, completion:nil)
+                    if var topController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController  {
+                        if let presentedViewController = topController.presentedViewController {
+                            topController = presentedViewController
+                        }
+                        topController.present(nextVc, animated: true, completion: nil)
+                    }
+                    
                 }
             }
         }

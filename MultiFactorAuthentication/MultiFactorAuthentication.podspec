@@ -22,8 +22,14 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://Sridharan0@github.com/Sridharan0/MultiFactorAuthentication.git", :tag => spec.version.to_s }
 
 
-  spec.source_files  = "MultiFactorAuthentication/**/*.{swift}"
-  spec.swift_versions  = "5.0"
+   spec.swift_versions  = "5.0"
+  spec.source_files = 'MultiFactorAuthentication/**/*.{swift}'
+spec.resource_bundles = {
+  'MultiFactorAuthentication' => ['MultiFactorAuthentication/**/*.{xcdatamodeld}','MultiFactorAuthentication/**/*.{storyboard,xcassets}']
+}
+
+
+
 
 
 end

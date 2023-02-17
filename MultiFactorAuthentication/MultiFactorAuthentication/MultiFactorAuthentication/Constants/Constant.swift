@@ -26,8 +26,11 @@ public let isTesting = true  //Testing popups enable/disable
 
 
 public var  bundle :Bundle = {
-    let  bundle = Bundle(identifier: "com.programs.MultiFactorAuthentication")
-     return bundle!
+    let bundleUrl = Bundle(for: CoreDataManager.self).url(forResource: "MultiFactorAuthentication", withExtension: "bundle")
+    let frameworkBundle = Bundle(url: bundleUrl!)
+
+     return frameworkBundle!
+    
     
  }()
 

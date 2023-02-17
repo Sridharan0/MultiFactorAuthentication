@@ -27,6 +27,7 @@ Pod::Spec.new do |spec|
 spec.resource_bundles = {
   'MultiFactorAuthentication' => ['MultiFactorAuthentication/**/*.{xcdatamodeld}','MultiFactorAuthentication/**/*.{storyboard,xcassets}']
 }
+end
 
 
 

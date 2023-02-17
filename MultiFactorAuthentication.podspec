@@ -22,17 +22,13 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://Sridharan0@github.com/Sridharan0/MultiFactorAuthentication.git", :tag => spec.version.to_s }
 
 
- 
-  spec.swift_versions  = "5.0"
-  spec.source_files = 'MultiFactorAuthentication/**/*.{h,m,swift}'
+   spec.swift_versions  = "5.0"
+  spec.source_files = 'MultiFactorAuthentication/**/*.{swift}'
 spec.resource_bundles = {
-  'MyPodBundle' => 'MultiFactorAuthentication/**/*.png'
-}
-spec.preserve_paths = 'MultiFactorAuthentication/**/*.png'
-
-spec.pod_target_xcconfig = {
-  'SWIFT_INCLUDE_PATHS' => '$(PODS_TARGET_SRCROOT)/MultiFactorAuthentication/Classes',
-  'OTHER_SWIFT_FLAGS' => '-DINCLUDE_ MultiFactorAuthentication_CLASS_IN_MAIN_BUNDLE'
+  'MultiFactorAuthentication' => ['MultiFactorAuthentication/**/*.{xcdatamodeld}','MultiFactorAuthentication/**/*.{storyboard,xcassets}']
 }
 
-end
+
+
+
+
